@@ -899,6 +899,11 @@ declare module "react-native-firebase" {
         getToken(forceRefresh?: Boolean): Promise<string>
 
         /**
+         * Returns the devices APNS token.
+         */
+        getAPNSToken(): Promise<string>
+
+        /**
          * Reset Instance ID and revokes all tokens.
          */
         deleteInstanceId(): Promise<any>

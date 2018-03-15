@@ -66,6 +66,18 @@ function messagingTests({ describe, it, firebase }) {
         .then(successCb);
     });
 
+    it('it should return APNS token from getAPNSToken', () => {
+      const successCb = token => {
+        token.should.be.a.String();
+        return Promise.resolve();
+      };
+
+      return firebase.native
+        .messaging()
+        .getAPNSToken()
+        .then(successCb);
+    });
+
     it('it should build a RemoteMessage', () => {
       const remoteMessage = new firebase.native.messaging.RemoteMessage(
         '305229645282'

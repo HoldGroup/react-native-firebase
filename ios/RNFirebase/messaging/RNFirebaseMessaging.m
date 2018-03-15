@@ -265,6 +265,13 @@ RCT_EXPORT_METHOD(getToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseR
     resolve([FIRMessaging messaging].FCMToken);
 }
 
+RCT_EXPORT_METHOD(getAPNSToken:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    NSData* deviceToken = [FIRMessaging messaging].APNSToken;
+    NSString *asString = [[deviceToken description] stringByTrimmingCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    asString = [asString stringByReplacingOccurrencesOfString:@" " withString:@""];
+    resolve(asString);
+}
+
 RCT_EXPORT_METHOD(deleteInstanceId:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
     [[FIRInstanceID instanceID] deleteIDWithHandler:^(NSError * _Nullable error) {
         if (!error) {
